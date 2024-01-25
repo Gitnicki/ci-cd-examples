@@ -7,6 +7,9 @@ jobs:
     defaults:
       run:
         working-directory: ci-example
+    defaults:
+      run:
+        working-directory: ci-example
     steps:
       - name: Setup LTS Version of NodeJS
         uses: actions/setup-node@v4
@@ -14,4 +17,9 @@ jobs:
           node-version: 20.11.0
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: npm ci
+      - name: Install all Dependencies
+        run: npm ci
+      - name: Run Unit Tests
+        run: npm run test
+      - name: Build App
+        run: npm run build
